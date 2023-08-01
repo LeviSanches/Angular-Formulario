@@ -1,0 +1,77 @@
+<section>
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Nome:</mat-label>
+                <input matInput placeholder="Digite seu nome" 
+                formControlName="nome"
+                [class.valid]="formulario.controls['nome'].valid"
+                [class.valid]="formulario.controls['nome'].invalid &&
+                (formulario.controls['nome'].touched || formulario.controls['nome'].dirty)"> 
+                <mat-error *ngIf="formulario.controls['nome'].hasError('minlength')">No mínimo 3 caracteres.</mat-error> 
+                <mat-error *ngIf="formulario.controls['nome'].hasError('required')">No mínimo 3 caracteres.</mat-error>                                      
+            </mat-form-field>
+        </p>        
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Digite seu email" 
+                formControlName="email">               
+            </mat-form-field>
+        </p>
+        <div formGroupName="endereco">
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>CEP</mat-label>
+                    <input matInput placeholder="00.000.000"
+                    formControlName="cep"
+                    (blur)="consultaCep()">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Número</mat-label>
+                    <input matInput placeholder="Ex: 32"
+                    formControlName="numero">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Complemento</mat-label>
+                    <input matInput placeholder="Ex: casa, apartamento"
+                    formControlName="complemento">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Rua</mat-label>
+                    <input matInput placeholder="ex: avenida santa cruz"
+                    formControlName="rua">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Bairro</mat-label>
+                    <input matInput
+                    formControlName="bairro">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Cidade</mat-label>
+                    <input matInput
+                    formControlName="cidade">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <input matInput placeholder="Ex: Bahia"
+                    formControlName="estado">
+                </mat-form-field>
+            </p>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar dados</button>   
+        <button type="button" class="btn btn-danger" (click)="debug()">Debug</button>    
+    </form>
+</section>
